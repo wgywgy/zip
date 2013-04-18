@@ -12,8 +12,8 @@ Can get the Image in the zip file which generated from TexturePacker.<br />
   通过TextPacker生成图片文件，并压缩成zip。
 
 ####2.
-Project put into the minizip folder, zipArchive.h, zipArchive.mm, TexureManager.h, TexureManager.m.<br />
-  项目中导入minizip文件夹, zipArchive.h, zipArchive.mm, TexureManager.h, TexureManager.m。
+Project put into the minizip folder, zipArchive.h, zipArchive.mm, TexureManager.h, TexureManager.m.And import libz.dylib class library.<br />
+  项目中导入minizip文件夹, zipArchive.h, zipArchive.mm, TexureManager.h, TexureManager.m。并且导入libz.dylib类库。
 
 ####3.
 The program enters the first viewController joined the zipfile function (which the project file),The function is as follows (the which demo.zip you compress the file).<br />
