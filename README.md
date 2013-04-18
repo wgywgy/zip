@@ -16,8 +16,6 @@ Can get the Image in the zip file which generated from TexturePacker.<br />
 ####3####.The program enters the first viewController joined the zipfile function (which the project file),The function is as follows (the which demo.zip you compress the file).<br />
   在程序进入的第一个viewController里加入zipFile函数(项目文件当中有),函数如下(其中demo.zip为你压缩过后的文件):<br />
 
-`- (void)zipFile
-{
     NSString *resPath = [[NSBundle mainBundle] pathForResource:@"demo"
                                                         ofType:@"zip"];
     
@@ -38,12 +36,11 @@ Can get the Image in the zip file which generated from TexturePacker.<br />
     }
     
     [za release];
-}`
 
 And call it. [self zipFile];<br />
 并调用它。
 
-####4####.Need to use the pictures ViewController use #import "TexureManager.h"<br />
+####4####.<br />Need to use the pictures ViewController use #import "TexureManager.h"<br />
   在需要使用图片的ViewController里 #import "TexureManager.h"
 
 ####5####.Added in viewDidLoad (demo_texture for TexturePacker generated file name):<br />
