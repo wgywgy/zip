@@ -17,26 +17,30 @@
 
 - (void)zipFile
 {
-    NSString *resPath = [[NSBundle mainBundle] pathForResource:@"demo"
-                                                        ofType:@"zip"];
+    static dispatch_once_t once;
     
-    ZipArchive *za = [[ZipArchive alloc] init];
-    
-    if( [za UnzipOpenFile:resPath] ) //解压
-    {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0]; //前两句为获取Documents在真机中的地址
+    dispatch_once(&once, ^{
+        NSString *resPath = [[NSBundle mainBundle] pathForResource:@"demo"
+                                                            ofType:@"zip"];
         
-        BOOL ret = [za UnzipFileTo:documentsDirectory overWrite:YES];
-        if(YES == ret)
+        ZipArchive *za = [[ZipArchive alloc] init];
+        
+        if( [za UnzipOpenFile:resPath] ) //解压
         {
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            [fileManager removeItemAtPath:resPath error:nil];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0]; //前两句为获取Documents在真机中的地址
+            
+            BOOL ret = [za UnzipFileTo:documentsDirectory overWrite:YES];
+            if(YES == ret)
+            {
+                NSFileManager *fileManager = [NSFileManager defaultManager];
+                [fileManager removeItemAtPath:resPath error:nil];
+            }
+            [za UnzipCloseFile];
         }
-        [za UnzipCloseFile];
-    }
-    
-    [za release];
+        
+        [za release];
+    });
 }
 
 - (void)viewDidLoad

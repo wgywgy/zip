@@ -50,7 +50,11 @@ static TexureManager * _instance;
 
 +(TexureManager*)shareInstance
 {
-    if(!_instance) _instance = [[TexureManager alloc] init];
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        _instance = [[TexureManager alloc] init];
+    });
     return  _instance;
 }
 
