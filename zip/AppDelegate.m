@@ -10,6 +10,8 @@
 
 #import "ViewController.h"
 
+#import "TexureManager.h"
+
 @implementation AppDelegate
 
 - (void)dealloc
@@ -49,8 +51,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//    NSDate* tmpStartData = [NSDate date];
+    
     [self zipFile];
-
+    [[TexureManager shareInstance] addTextureFile:@"demo_texture"];
+    
+//    double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
+//    NSLog(@">>>>>>>>>>cost time = %f", deltaTime);
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
     self.window.rootViewController = self.viewController;

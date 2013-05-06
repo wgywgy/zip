@@ -21,7 +21,6 @@
 @end
 
 
-
 @implementation ZipArchive
 @synthesize delegate = _delegate;
 
@@ -154,14 +153,14 @@
 -(BOOL) UnzipOpenFile:(NSString*) zipFile
 {
 	_unzFile = unzOpen( (const char*)[zipFile UTF8String] );
-	if( _unzFile )
-	{
-		unz_global_info  globalInfo = {0};
-		if( unzGetGlobalInfo(_unzFile, &globalInfo )==UNZ_OK )
-		{
+//	if( _unzFile )
+//	{
+//		unz_global_info  globalInfo = {0};
+//		if( unzGetGlobalInfo(_unzFile, &globalInfo )==UNZ_OK )
+//		{
 //			NSLog(@"%@",[NSString stringWithFormat:@"%ld entries in the zip file",globalInfo.number_entry] );
-		}
-	}
+//		}
+//	}
 	return _unzFile!=NULL;
 }
 
@@ -254,7 +253,7 @@
 		{
 			fclose( fp );
 			// set the orignal datetime property
-			NSDate* orgDate = nil;
+//			NSDate* orgDate = nil;
 			
 			//{{ thanks to brad.eaton for the solution
 			NSDateComponents *dc = [[NSDateComponents alloc] init];
@@ -269,25 +268,23 @@
 			NSCalendar *gregorian = [[NSCalendar alloc] 
 									 initWithCalendarIdentifier:NSGregorianCalendar];
 			
-			orgDate = [gregorian dateFromComponents:dc] ;
+//			orgDate = [gregorian dateFromComponents:dc] ;
 			[dc release];
 			[gregorian release];
 			//}}
 			
 			
-			NSDictionary* attr = [NSDictionary dictionaryWithObject:orgDate forKey:NSFileModificationDate]; //[[NSFileManager defaultManager] fileAttributesAtPath:fullPath traverseLink:YES];
-			if( attr )
-			{
+//			NSDictionary* attr = [NSDictionary dictionaryWithObject:orgDate forKey:NSFileModificationDate]; //[[NSFileManager defaultManager] fileAttributesAtPath:fullPath traverseLink:YES];
+//			if( attr )
+//			{
 				//		[attr  setValue:orgDate forKey:NSFileCreationDate];
-				if( ![[NSFileManager defaultManager] setAttributes:attr ofItemAtPath:fullPath error:nil] )
-				{
-					// cann't set attributes 
-					NSLog(@"Failed to set attributes");
-				}
+//				if( ![[NSFileManager defaultManager] setAttributes:attr ofItemAtPath:fullPath error:nil] )
+//				{
+					// cann't set attributes
+//					NSLog(@"Failed to set attributes");
+//				}
 				
-			}
-		
-			
+//			}
 			
 		}
 		unzCloseCurrentFile( _unzFile );
@@ -334,7 +331,4 @@
 	return date;
 }
 
-
 @end
-
-
