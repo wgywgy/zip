@@ -61,9 +61,9 @@ static TexureManager * _instance;
 -(void)addTextureFile:(NSString*)fileName
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString * filePath = [documentsDirectory stringByAppendingString:
-                                           [NSString stringWithFormat:@"/%@",fileName]];
+    NSString *documentsDirectory = paths[0];
+    NSString *filePath = [documentsDirectory stringByAppendingString:
+                                          [NSString stringWithFormat:@"/%@",fileName]];
 
     if(isRetina)
         filePath = [filePath stringByAppendingString:@"-hd.plist"];
@@ -72,24 +72,24 @@ static TexureManager * _instance;
     
     NSDictionary * dicRoot  = [NSDictionary dictionaryWithContentsOfFile:filePath];
     
-    NSDictionary * atts     = [dicRoot objectForKey:ATTRS_KEY];
+    NSDictionary * atts     = dicRoot[ATTRS_KEY];
     
-    NSString * textureName  = [atts objectForKey:IMAGE_NAME_KEY];
+    NSString * textureName  = atts[IMAGE_NAME_KEY];
     NSString *path          = [documentsDirectory stringByAppendingString:
                                                [NSString stringWithFormat:@"/%@",textureName]];
     UIImage * image         = [[UIImage alloc] initWithContentsOfFile:path];
    
-    NSDictionary * frames   = [dicRoot objectForKey:FRAMES_KEY];
+    NSDictionary * frames   = dicRoot[FRAMES_KEY];
     
     int scale = isRetina?2:1;
-    for (NSString *  key in [frames allKeys])
+    for (NSString * key in [frames allKeys])
     {
-        NSDictionary * keyDic= [frames objectForKey:key];
+        NSDictionary * keyDic = frames[key];
         
-        NSString * frame                = [keyDic objectForKey:FRAME_KEY];
+        NSString * frame                = keyDic[FRAME_KEY];
        
-        NSString * sourceColorRectStr   = [keyDic objectForKey:SCOURCE_COLOR_RECT];
-        NSString * sourceSizeStr        = [keyDic objectForKey:SOURCE_SIZE];
+        NSString * sourceColorRectStr   = keyDic[SCOURCE_COLOR_RECT];
+        NSString * sourceSizeStr        = keyDic[SOURCE_SIZE];
         
         
         CGSize  sourceSize              = CGSizeFromString(sourceSizeStr); 
@@ -249,7 +249,7 @@ static void providerReleaseData(void *info, const void *data, size_t size)
 
 -(UIImage*)getUIImageByName:(NSString*)imageName
 {
-    return [texureDic objectForKey:imageName];
+    return texureDic[imageName];
 }
 
 -(NSArray*)getAllImages

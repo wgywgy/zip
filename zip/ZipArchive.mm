@@ -69,7 +69,7 @@
 
 	if( attr )
 	{
-		NSDate* fileDate = (NSDate*)[attr objectForKey:NSFileModificationDate];
+		NSDate* fileDate = (NSDate*)attr[NSFileModificationDate];
 		if( fileDate )
 		{
 			// some application does use dosDate, but tmz_date instead

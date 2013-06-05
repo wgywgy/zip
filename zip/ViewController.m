@@ -15,15 +15,17 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
+- (void)zip_Completed
 {
-    [super viewDidLoad];
-    
     UIImage * myImg = [[TexureManager shareInstance]getUIImageByName:@"UI_FacebookButton.png"];
     UIImageView * myImgView = [[UIImageView alloc]initWithImage:myImg];
     [self.view addSubview:myImgView];
-    
     [myImgView release];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning

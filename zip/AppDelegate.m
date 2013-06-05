@@ -12,6 +12,10 @@
 
 #import "TexureManager.h"
 
+#import "ZipArchive.h"
+
+static NSOperationQueue * queue;
+
 @implementation AppDelegate
 
 - (void)dealloc
@@ -34,35 +38,44 @@
         if( [za UnzipOpenFile:resPath] ) //解压
         {
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *documentsDirectory = [paths objectAtIndex:0]; //前两句为获取Documents在真机中的地址
+            NSString *documentsDirectory = paths[0]; //前两句为获取Documents在真机中的地址
             
             BOOL ret = [za UnzipFileTo:documentsDirectory overWrite:YES];
             if(YES == ret)
             {
-                NSFileManager *fileManager = [NSFileManager defaultManager];
-                [fileManager removeItemAtPath:resPath error:nil];
+//                NSDate* tmpStartData = [NSDate date];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
+                               ^{
+                                   NSFileManager *fileManager = [NSFileManager defaultManager];
+                                   [fileManager removeItemAtPath:resPath error:nil];
+                               });
+//                double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
+//                NSLog(@"cost time = %f", deltaTime);
             }
             [za UnzipCloseFile];
         }
         
         [za release];
+        [[TexureManager shareInstance] addTextureFile:@"demo_texture"];
+        [self.viewController performSelectorOnMainThread:@selector(zip_Completed)
+                                              withObject:nil
+                                           waitUntilDone:NO];
     });
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    NSDate* tmpStartData = [NSDate date];
-    
-    [self zipFile];
-    [[TexureManager shareInstance] addTextureFile:@"demo_texture"];
-    
-//    double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
-//    NSLog(@">>>>>>>>>>cost time = %f", deltaTime);
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    
+    queue = [[NSOperationQueue alloc] init];
+    NSInvocationOperation * op = [[[NSInvocationOperation alloc] initWithTarget:self
+                                                                       selector:@selector(zipFile)
+                                                                         object:nil] autorelease];
+    [queue addOperation:op];
     
     return YES;
 }
