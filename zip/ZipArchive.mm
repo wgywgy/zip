@@ -11,8 +11,6 @@
 #import "zlib.h"
 #import "zconf.h"
 
-
-
 @interface ZipArchive (Private)
 
 -(void) OutputErrorMessage:(NSString*) msg;

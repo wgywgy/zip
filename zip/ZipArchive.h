@@ -16,14 +16,12 @@
 #include "minizip/zip.h"
 #include "minizip/unzip.h"
 
-
 @protocol ZipArchiveDelegate <NSObject>
 @optional
 -(void) ErrorMessage:(NSString*) msg;
 -(BOOL) OverWriteOperation:(NSString*) file;
 
 @end
-
 
 @interface ZipArchive : NSObject {
 @private
