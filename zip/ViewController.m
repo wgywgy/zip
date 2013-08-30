@@ -20,7 +20,7 @@
     UIImage * myImg = [[TexureManager shareInstance]getUIImageByName:@"UI_FacebookButton.png"];
     UIImageView * myImgView = [[UIImageView alloc]initWithImage:myImg];
     [self.view addSubview:myImgView];
-    [myImgView release];
+    [myImgView release]; 
 }
 
 - (void)viewDidLoad
