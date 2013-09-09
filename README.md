@@ -1,5 +1,6 @@
 zip
 ===
+[![Build Status](https://travis-ci.org/wgywgy/zip.png?branch=master)](https://travis-ci.org/wgywgy/zip)
 
 Can get the Image in the zip file which generated from TexturePacker.<br />
 从zip压缩过的TexturePacker生成的文件取出图片。
