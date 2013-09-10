@@ -45,7 +45,8 @@ Generated image file by TextPacker, and compressed into a zip.<br />
 
 And then in method
 
-`` - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions ``
+	- (BOOL)application:(UIApplication *)application 
+	didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 add follows: <br />
 
@@ -107,7 +108,8 @@ add follows: <br />
 
 然后在
 
-`` - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions ``
+	- (BOOL)application:(UIApplication *)application 
+	didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 方法中添加如下代码。 <br />
 
