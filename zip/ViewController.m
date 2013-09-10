@@ -17,7 +17,7 @@
 
 - (void)zip_Completed
 {
-    UIImage * myImg = [[TexureManager shareInstance]getUIImageByName:@"UI_FacebookButton.png"];
+    UIImage * myImg = [UIImage imageNamed:@"UI_FacebookButton.png"];
     UIImageView * myImgView = [[UIImageView alloc]initWithImage:myImg];
     [self.view addSubview:myImgView];
     [myImgView release]; 

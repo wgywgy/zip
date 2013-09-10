@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "math.h"
 
 @interface ViewController : UIViewController
 

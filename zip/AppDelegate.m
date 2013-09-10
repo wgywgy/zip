@@ -14,6 +14,8 @@
 
 #import "ZipArchive.h"
 
+#import "UIImage+zipArchiveAndTexure.h"
+
 static NSOperationQueue *queue;
 
 @implementation AppDelegate
@@ -39,14 +41,14 @@ static NSOperationQueue *queue;
             
 	        BOOL ret = [za UnzipFileTo:documentsDirectory overWrite:YES];
 	        if (YES == ret) {
-	            NSDate *tmpStartData = [NSDate date];
+//	            NSDate *tmpStartData = [NSDate date];
 	            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
 	                           ^{
                                    NSFileManager *fileManager = [NSFileManager defaultManager];
                                    [fileManager removeItemAtPath:resPath error:nil];
                                });
-	            double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
-	            NSLog(@"cost time = %f", deltaTime);
+//	            double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
+//	            NSLog(@"cost time = %f", deltaTime);
 			}
 	        [za UnzipCloseFile];
 		}
@@ -64,12 +66,16 @@ static NSOperationQueue *queue;
 	self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
 	self.window.rootViewController = self.viewController;
 	[self.window makeKeyAndVisible];
-    
+
 	queue = [[NSOperationQueue alloc] init];
 	NSInvocationOperation *op = [[[NSInvocationOperation alloc] initWithTarget:self
 	                                                                  selector:@selector(zipFile)
 	                                                                    object:nil] autorelease];
 	[queue addOperation:op];
+    
+    [UIImage jr_swizzleClassMethod:@selector(imageNamed:)
+                   withClassMethod:@selector(getImageByName:)
+                             error:nil];
     
 	return YES;
 }

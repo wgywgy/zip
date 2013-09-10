@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "JRSwizzle.h"
+
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

@@ -247,15 +247,14 @@ static void providerReleaseData(void *info, const void *data, size_t size)
     free((void *)data);
 }
 
--(UIImage*)getUIImageByName:(NSString*)imageName
+- (UIImage *)getUIImageByName:(NSString*)imageName
 {
     return texureDic[imageName];
 }
 
--(NSArray*)getAllImages
+- (NSArray*)getAllImages
 {
     return texureDic.allValues;
 }
-
 
 @end

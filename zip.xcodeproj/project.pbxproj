@@ -26,6 +26,8 @@
 		0393E6F6171E8233008677A0 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 0393E6EF171E8233008677A0 /* zip.c */; };
 		0393E6F7171E8233008677A0 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0393E6F2171E8233008677A0 /* ZipArchive.mm */; };
 		0393E6F9171E8365008677A0 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0393E6F8171E8365008677A0 /* libz.1.2.5.dylib */; };
+		03EE292517DEB23700C06C92 /* UIImage+zipArchiveAndTexure.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EE292417DEB23700C06C92 /* UIImage+zipArchiveAndTexure.m */; };
+		03EE292817DEB40900C06C92 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EE292717DEB40900C06C92 /* JRSwizzle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,10 @@
 		0393E6F1171E8233008677A0 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		0393E6F2171E8233008677A0 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		0393E6F8171E8365008677A0 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		03EE292317DEB23700C06C92 /* UIImage+zipArchiveAndTexure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+zipArchiveAndTexure.h"; sourceTree = "<group>"; };
+		03EE292417DEB23700C06C92 /* UIImage+zipArchiveAndTexure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+zipArchiveAndTexure.m"; sourceTree = "<group>"; };
+		03EE292617DEB40800C06C92 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		03EE292717DEB40900C06C92 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,11 +114,7 @@
 		036057FA171D517E0035360E /* zip */ = {
 			isa = PBXGroup;
 			children = (
-				0393E6E7171E8233008677A0 /* minizip */,
-				0393E6F1171E8233008677A0 /* ZipArchive.h */,
-				0393E6F2171E8233008677A0 /* ZipArchive.mm */,
-				03095DD6171FEBB200A2D024 /* TexureManager.h */,
-				03095DD7171FEBB200A2D024 /* TexureManager.m */,
+				03EE292917DEB53A00C06C92 /* zipAndTexure */,
 				03605803171D517E0035360E /* AppDelegate.h */,
 				03605804171D517E0035360E /* AppDelegate.m */,
 				0360580C171D517E0035360E /* ViewController.h */,
@@ -152,6 +154,30 @@
 				0393E6F0171E8233008677A0 /* zip.h */,
 			);
 			path = minizip;
+			sourceTree = "<group>";
+		};
+		03EE292917DEB53A00C06C92 /* zipAndTexure */ = {
+			isa = PBXGroup;
+			children = (
+				03EE292A17DEB55D00C06C92 /* Categories */,
+				0393E6E7171E8233008677A0 /* minizip */,
+				0393E6F1171E8233008677A0 /* ZipArchive.h */,
+				0393E6F2171E8233008677A0 /* ZipArchive.mm */,
+				03095DD6171FEBB200A2D024 /* TexureManager.h */,
+				03095DD7171FEBB200A2D024 /* TexureManager.m */,
+			);
+			name = zipAndTexure;
+			sourceTree = "<group>";
+		};
+		03EE292A17DEB55D00C06C92 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				03EE292617DEB40800C06C92 /* JRSwizzle.h */,
+				03EE292717DEB40900C06C92 /* JRSwizzle.m */,
+				03EE292317DEB23700C06C92 /* UIImage+zipArchiveAndTexure.h */,
+				03EE292417DEB23700C06C92 /* UIImage+zipArchiveAndTexure.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +256,8 @@
 				0393E6F6171E8233008677A0 /* zip.c in Sources */,
 				0393E6F7171E8233008677A0 /* ZipArchive.mm in Sources */,
 				03095DD8171FEBB200A2D024 /* TexureManager.m in Sources */,
+				03EE292517DEB23700C06C92 /* UIImage+zipArchiveAndTexure.m in Sources */,
+				03EE292817DEB40900C06C92 /* JRSwizzle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,8 +294,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bo Shan (7W24F5L9L6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bo Shan (7W24F5L9L6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -282,8 +310,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "83F07E89-10EA-4F94-A4A1-E05EB33BB37A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2150E6E2-9F0F-48D5-9256-8310161DEBEC";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -299,8 +327,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Fireflies Software Ltd";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Fireflies Software Ltd";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
