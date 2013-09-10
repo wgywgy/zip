@@ -69,6 +69,11 @@ static NSOperationQueue *queue;
 	self.window.rootViewController = self.viewController;
 	[self.window makeKeyAndVisible];
 
+	return YES;
+}
+
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
 	queue = [[NSOperationQueue alloc] init];
 	NSInvocationOperation *op = [[[NSInvocationOperation alloc] initWithTarget:self
 	                                                                  selector:@selector(zipFile)
@@ -78,8 +83,7 @@ static NSOperationQueue *queue;
     [UIImage jr_swizzleClassMethod:@selector(imageNamed:)
                    withClassMethod:@selector(getImageByName:)
                              error:nil];
-    
-	return YES;
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
