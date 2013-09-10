@@ -1,2 +1,2 @@
 language: objective-c
-script: xcodebuild -target zip -configuration Coverage -sdk iphonesimulator
+script: xcodebuild -target zip -sdk iphonesimulator

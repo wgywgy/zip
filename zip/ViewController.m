@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "TexureManager.h"
 
 @interface ViewController ()
 
