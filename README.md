@@ -1,6 +1,6 @@
-zip
+zip [![Build Status](https://travis-ci.org/wgywgy/zip.png?branch=master)](https://travis-ci.org/wgywgy/zip)
 ===
-[![Build Status](https://travis-ci.org/wgywgy/zip.png?branch=master)](https://travis-ci.org/wgywgy/zip)
+
 
 **Can get the Image in the zip file which generated from TexturePacker.**<br />
 
@@ -46,8 +46,7 @@ Generated image file by TextPacker, and compressed into a zip.<br />
 And then in method
 
 	- (BOOL)application:(UIApplication *)application 
-	didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-
+	willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 add follows: <br />
 
 	queue = [[NSOperationQueue alloc] init];
@@ -109,7 +108,7 @@ add follows: <br />
 然后在
 
 	- (BOOL)application:(UIApplication *)application 
-	didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+	willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 方法中添加如下代码。 <br />
 
